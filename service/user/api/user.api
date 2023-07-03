@@ -1,0 +1,31 @@
+syntax = "v1"
+
+info(
+	title: "book management system"
+	desc: "this is a book management system serves as a demo for leaning the go-zero"
+	author: "hellokid"
+	email: "helloyaoqi@outlook.com"
+	version: "v 0.0.1"
+)
+
+type (
+	loginReq {
+		Number   string `json:"number"`
+		Name     string `json:"name"`
+		Password string `json:"password"`
+	}
+	loginResp {
+		AccessToken string `json:"access_token"`
+		Expiration  string `json:"expiration"`
+	}
+)
+@server (
+	group: user
+	prefix :/api/user
+)
+
+service BMS-api {
+	@doc "用户登录"
+	@handler loginHandler
+	post /login(loginReq)returns(loginResp)
+}
