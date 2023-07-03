@@ -1,0 +1,4 @@
+.idea
+.vscode
+./service/user/tmp
+*.exe
