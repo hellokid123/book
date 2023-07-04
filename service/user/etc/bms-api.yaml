@@ -1,3 +1,10 @@
 Name: BMS-api
 Host: 127.0.0.1
 Port: 8089
+
+MysqlConf:
+  Host: localhost
+  User: root
+  Password: "123456"
+  DBName: book
+  Port: "3306"

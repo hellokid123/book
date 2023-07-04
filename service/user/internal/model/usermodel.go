@@ -1,4 +1,4 @@
-package internal
+package model
 
 import "github.com/zeromicro/go-zero/core/stores/sqlx"
 
@@ -16,7 +16,7 @@ type (
 	}
 )
 
-// NewUserModel returns a model for the database table.
+// NewUserModel returns a source for the database table.
 func NewUserModel(conn sqlx.SqlConn) UserModel {
 	return &customUserModel{
 		defaultUserModel: newUserModel(conn),

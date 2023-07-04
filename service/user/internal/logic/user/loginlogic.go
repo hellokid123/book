@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"errors"
 
 	"book/service/user/internal/svc"
 	"book/service/user/internal/types"
@@ -24,7 +25,17 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err error) {
-	// todo: add your logic here and delete this line
-
+	resp = new(types.LoginResp)
+	res, err := l.svcCtx.UserModel.FindOneByNumber(l.ctx, req.Number)
+	if err != nil {
+		err = errors.New("查询用户出错")
+		return
+	}
+	if res.Password != req.Password {
+		err = errors.New("密码错误")
+		return
+	}
+	resp.AccessToken = "123"
+	resp.Expiration = "13"
 	return
 }
